@@ -1,27 +1,17 @@
 import allArticlesData from "../../data/articlesData";
+import { createSlice } from "@reduxjs/toolkit";
 
-// actions creator
-
-export const loadData = () => {
-    return {
-        type: 'allArticles/loadData',
-        payload: allArticlesData
+const options = {
+    name: 'allArticles',
+    initialState: [],
+    reducers: {
+        loadData: (state, action) => {
+            return allArticlesData;
+        }
     }
-};
+}
 
-// initial state
+export const allArticlesSlice = createSlice(options);
 
-const initialState = [];
-
-// Reducer
-
-export const allArticlesReducer = (allArticles = initialState, action) => {
-    switch(action.type) {
-        case 'allArticles/loadData':
-            return  action.payload;
-
-        default:
-            return allArticles;
-    }
-};
-
+export const {loadData} = allArticlesSlice.actions;
+export default allArticlesSlice.reducer;
